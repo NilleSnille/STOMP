@@ -1,0 +1,12 @@
+# Install a matched torch/torchvision build for your CUDA version first.
+# These are compatibility ranges, not a recovered paper environment lockfile.
+torch>=2.3,<3
+torchvision>=0.18,<1
+numpy>=1.24,<3
+omegaconf==2.3.0
+einops>=0.7,<1
+av>=12,<17
+torchmetrics>=1.4,<2
+scikit-learn>=1.3,<2
+scipy>=1.10,<2
+tensorboard>=2.14,<3

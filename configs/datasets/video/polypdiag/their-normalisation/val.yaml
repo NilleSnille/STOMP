@@ -1,0 +1,19 @@
+name: polypdiag
+root: ${oc.env:STOMP_POLYPDIAG_DATA,data/downstream/polypdiag}
+split: val
+num_classes: 2
+normalization:
+  mean: [0.45, 0.45, 0.45]
+  std: [0.225, 0.225, 0.225]
+with_index: False
+inference_batch_size: 4
+
+mode: val
+num_clips_from_video: 10
+num_crops_from_clip: 1
+num_frames_from_crop: 8
+sampling_rate: 8
+target_fps: 30.0
+multithread_decode: False
+decoding_backend: pyav
+num_retries: 10

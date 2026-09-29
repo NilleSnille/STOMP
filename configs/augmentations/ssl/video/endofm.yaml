@@ -1,0 +1,130 @@
+stage_type: pretrain
+modality: video
+views:
+  0:
+    is_small: False
+    num_crops: 1
+    rrc:
+      size: 224
+      min_scale: 0.4
+      max_scale: 1.0
+    color_jitter:
+      prob: 0.8
+      brightness: 0.4
+      contrast: 0.4
+      saturation: 0.2
+    grayscale:
+      prob: 0.2
+    horizontal_flip:
+      prob: 0.5
+    temporal:
+      T: 8
+      offset:
+        start_offset: 0
+        end_offset: 5
+
+  1:
+    is_small: False
+    num_crops: 1
+    rrc:
+      size: 224
+      min_scale: 0.4
+      max_scale: 1.0
+    color_jitter:
+      prob: 0.8
+      brightness: 0.4
+      contrast: 0.4
+      saturation: 0.2
+    grayscale:
+      prob: 0.2
+    horizontal_flip:
+      prob: 0.5
+    temporal:
+      T: 16
+      offset:
+        start_offset: 5
+        end_offset: 0
+
+  2:
+    is_small: True
+    num_crops: 2
+    rrc:
+      size: 96
+      min_scale: 0.05
+      max_scale: 0.4
+    color_jitter:
+      prob: 0.8
+      brightness: 0.4
+      contrast: 0.4
+      saturation: 0.2
+    grayscale:
+      prob: 0.2
+    horizontal_flip:
+      prob: 0.5
+    temporal:
+      T: 16
+      random:
+        num_windows: 8
+
+  3:
+    is_small: True
+    num_crops: 2
+    rrc:
+      size: 96
+      min_scale: 0.05
+      max_scale: 0.4
+    color_jitter:
+      prob: 0.8
+      brightness: 0.4
+      contrast: 0.4
+      saturation: 0.2
+    grayscale:
+      prob: 0.2
+    horizontal_flip:
+      prob: 0.5
+    temporal:
+      T: 8
+      random:
+        num_windows: 8
+
+  4:
+    is_small: True
+    num_crops: 2
+    rrc:
+      size: 96
+      min_scale: 0.05
+      max_scale: 0.4
+    color_jitter:
+      prob: 0.8
+      brightness: 0.4
+      contrast: 0.4
+      saturation: 0.2
+    grayscale:
+      prob: 0.2
+    horizontal_flip:
+      prob: 0.5
+    temporal:
+      T: 4
+      random:
+        num_windows: 8
+
+  5:
+    is_small: True
+    num_crops: 2
+    rrc:
+      size: 96
+      min_scale: 0.05
+      max_scale: 0.4
+    color_jitter:
+      prob: 0.8
+      brightness: 0.4
+      contrast: 0.4
+      saturation: 0.2
+    grayscale:
+      prob: 0.2
+    horizontal_flip:
+      prob: 0.5
+    temporal:
+      T: 2
+      random:
+        num_windows: 8

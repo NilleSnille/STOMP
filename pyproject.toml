@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stomp-endoscopy"
+version = "0.1.0"
+description = "Semantic Token-dropping Masked Pre-training for endoscopy video"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Nils L. Hallerfelt"}, {name = "Andrea Cherubini"}, {name = "Carlo Biffi"}, {name = "Giacomo Tarroni"}]
+dynamic = ["dependencies"]
+
+[project.urls]
+Repository = "https://github.com/NilleSnille/STOMP"
+Paper = "https://papers.miccai.org/miccai-2026-sat/paper/CaPTion_006.pdf"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+include = ["ssl_space*", "drivers*"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]

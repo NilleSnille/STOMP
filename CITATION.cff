@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use STOMP, please cite our paper."
+title: "STOMP: Efficient Self-Supervised Pre-Training in Endoscopy"
+type: software
+version: 0.1.0
+repository-code: "https://github.com/NilleSnille/STOMP"
+url: "https://papers.miccai.org/miccai-2026-sat/paper/CaPTion_006.pdf"
+authors:
+  - family-names: Hallerfelt
+    given-names: Nils L.
+  - family-names: Cherubini
+    given-names: Andrea
+  - family-names: Biffi
+    given-names: Carlo
+  - family-names: Tarroni
+    given-names: Giacomo
+preferred-citation:
+  type: conference-paper
+  title: "Efficient Self-Supervised Pre-Training in Endoscopy"
+  year: 2026
+  conference:
+    name: "Medical Image Computing and Computer Assisted Intervention (MICCAI)"
+  url: "https://papers.miccai.org/miccai-2026-sat/paper/CaPTion_006.pdf"
+  authors:
+    - family-names: Hallerfelt
+      given-names: Nils L.
+    - family-names: Cherubini
+      given-names: Andrea
+    - family-names: Biffi
+      given-names: Carlo
+    - family-names: Tarroni
+      given-names: Giacomo

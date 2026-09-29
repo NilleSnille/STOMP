@@ -1,0 +1,16 @@
+name: endofm
+root: ${oc.env:STOMP_PRETRAIN_DATA,data/pretrain}
+split: train
+num_classes: -1
+normalization:
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+with_index: True
+num_clips_from_video: 1
+num_frames_from_clip: 8
+sampling_rate: 8
+target_fps: 30.0
+multithread_decode: False
+decoding_backend: pyav
+mode: normal
+num_retries: 10

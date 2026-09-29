@@ -1,0 +1,75 @@
+meta:
+  seed: 0
+
+method_eval:
+  name: base_linear
+  finetune: True
+  normalize: False
+  validation_freq: 0
+  pretrain_dir: ${oc.env:STOMP_PRETRAIN_DIR,exps/stomp/your_pretraining_run}
+
+optimizer:
+  name: adam
+  max_epochs: 20
+  batch_size: 4
+  lr: 1.0e-3
+  weight_decay: 0.0
+  exclude_bias_n_norm_wd: False
+  clip_grad: -1
+  clip_grad_local: True
+  scale_lr_linear: True
+
+lr_scheduler:
+  name: cosine
+  end_lr: 0.
+  warmup_start_lr: -1
+  warmup_epochs: 0
+  interval: step
+  lr_decay_steps: null
+
+wd_scheduler:
+  name: constant
+  interval: step
+  wd_decay_steps: null
+
+performance:
+  disable_channel_last: True
+  num_workers: 4
+  sync_batchnorm: False
+  precision: "32"
+
+backbone:
+  name: dropped_dst_vit
+
+  arch_kwargs:
+    img_size: [224,224]
+    patch_size: [16,16]
+    in_chans: 3
+    embed_dim: 768
+    depth: 12
+    num_heads: 12
+    num_cls_tokens: 1
+    mlp_ratio: 4.0
+    qkv_bias: True
+    qk_scale: null
+    feat_drop_p: 0.0
+    attn_drop_p: 0.0
+    path_drop_p: 0.1
+    dropout_p: 0.0 
+    act_layer: gelu
+    norm_layer: layernorm
+    num_frames: 8
+    interpolation_mode_space: bilinear
+    interpolation_mode_time: linear
+
+  pretrained_kwargs:
+    pretrain_method: generic
+    path: ${method_eval.pretrain_dir}/models/model_final_ep30.pth
+
+dataset_train: configs/datasets/video/polypdiag/their-normalisation/train.yaml
+
+augmentation_train: configs/augmentations/downstream/video/polypdiag/train.yaml
+
+dataset_eval: configs/datasets/video/polypdiag/their-normalisation/test.yaml
+
+augmentation_eval: configs/augmentations/downstream/video/polypdiag/val.yaml

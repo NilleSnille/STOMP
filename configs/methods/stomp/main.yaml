@@ -1,0 +1,137 @@
+meta:
+  seed: 0
+  ckpt_freq: 10
+
+performance:
+  disable_channel_last: True
+  num_workers: 10
+  sync_batchnorm: False
+  precision: "mixed-fp16"
+
+method:
+  name: stomp
+  proj_num_layers: 3
+  proj_use_bn: false
+  proj_norm_last_layer: true
+  proj_hidden_dim: 2048
+  proj_bottleneck_dim: 256
+  proj_output_dim: 65536
+  inv_warmup_teacher_temp: 0.04
+  inv_teacher_temp: 0.04
+  inv_warmup_teacher_temp_epochs: 0
+  inv_student_temp: 0.07
+  inv_center_momentum: 0.9
+  freeze_last_layer_epochs: 1
+  global_mask_ratio: 0.8
+  global_mask_candidate_ratio: 0.6
+  num_prototypes: 1024
+  # Paper setting: temperature used for balanced Sinkhorn assignments.
+  sinkhorn_eps: 0.10
+  sinkhorn_iters: 10
+  sinkhorn_logits_temp: 0.1
+  sinkhorn_normalise_target: true
+  sinkhorn_soft_targets: true
+  use_temporal_decoder: true # Four-block divided space-time decoder used in the paper.
+
+  recon_strength: 0.5
+  invariance_strength: 0.5
+
+backbone:
+  name: dropped_dst_vit
+  arch_kwargs:
+    img_size:
+    - 224
+    - 224
+    patch_size:
+    - 16
+    - 16
+    in_chans: 3
+    embed_dim: 768
+    depth: 12
+    num_heads: 12
+    num_cls_tokens: 1
+    mlp_ratio: 4.0
+    qkv_bias: true
+    qk_scale: null
+    feat_drop_p: 0.0
+    attn_drop_p: 0.0
+    path_drop_p: 0.1
+    dropout_p: 0.0
+    act_layer: gelu
+    norm_layer: layernorm
+    num_frames: 8
+    interpolation_mode_space: bilinear
+    interpolation_mode_time: linear
+  pretrained_kwargs:
+    pretrain_method: kinetics400
+    path: ${oc.env:STOMP_KINETICS_CHECKPOINT,pretrained_weights/kinetics400/kinetics400_vitb_ssl.pth}
+
+optimizer:
+  name: adamw
+  max_epochs: 30
+  batch_size: 12
+  lr: 0.0005
+  weight_decay: 0.04
+  exclude_bias_n_norm_wd: True
+  clip_grad: 3.0
+  clip_grad_local: True
+  scale_lr_linear: True
+
+  # optimizer specific configs
+  betas: [0.9, 0.999]
+  eps: 1.0e-8
+  amsgrad: False
+
+lr_scheduler:
+  name: cosine
+  interval: step
+  lr_decay_steps: null
+  end_lr: 1.0e-6
+  warmup_start_lr: 0.0
+  warmup_epochs: 10
+  
+wd_scheduler:
+  name: cosine
+  interval: step
+  wd_decay_steps: null
+  end_wd: 0.4
+  warmup_start_wd: 0
+  warmup_epochs: 0
+
+dataset_train: configs/datasets/video/endofm/train_innorm.yaml
+
+augmentation_train: configs/augmentations/ssl/video/endofm.yaml
+
+online_eval: configs/online_eval/evaluation-none.yaml
+
+momentum:
+  base_tau: 0.996
+  final_tau: 1.0
+
+momentum_backbone:
+  name: dropped_dst_vit
+  arch_kwargs:
+    img_size:
+    - 224
+    - 224
+    patch_size:
+    - 16
+    - 16
+    in_chans: 3
+    embed_dim: 768
+    depth: 12
+    num_heads: 12
+    num_cls_tokens: 1
+    mlp_ratio: 4.0
+    qkv_bias: true
+    qk_scale: null
+    feat_drop_p: 0.0
+    attn_drop_p: 0.0
+    path_drop_p: 0.0
+    dropout_p: 0.0
+    act_layer: gelu
+    norm_layer: layernorm
+    num_frames: 8
+    interpolation_mode_space: bilinear
+    interpolation_mode_time: linear
+  pretrained_kwargs:

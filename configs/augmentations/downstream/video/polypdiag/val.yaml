@@ -1,0 +1,15 @@
+stage_type: validation
+modality: video
+views:
+  0:
+    is_small: false
+    num_crops: 1
+    temporal:
+      T: 8
+      offset:
+        start_offset: 0
+        end_offset: 0
+    random_short_side_scale_jitter:
+      min_size: 256
+      max_size: 256
+      inverse_uniform_sampling: false    

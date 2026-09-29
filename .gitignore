@@ -1,0 +1,38 @@
+# Python and environments
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+
+# Datasets, pretrained weights, and experiment outputs
+/data/
+/pretrained_weights/
+/exps/
+/checkpoints/
+/runs/
+/wandb/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.zip
+*.tar
+*.tar.gz
+*.log
+
+# Local credentials and editor state
+.env
+.env.*
+*.pem
+*.key
+.vscode/
+.idea/
+.DS_Store
