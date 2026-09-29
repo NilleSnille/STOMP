@@ -1,6 +1,6 @@
 # STOMP: Efficient Self-Supervised Pre-Training in Endoscopy
 
-Official implementation of **STOMP (Semantic Token-dropping Masked Pre-training)**, accepted at **MICCAI 2026**.
+Official implementation of **STOMP (Semantic Token-dropping Masked Pre-training)**, accepted at **MICCAI 2026 CaPTion**.
 
 **Nils L. Hallerfelt, Andrea Cherubini, Carlo Biffi, and Giacomo Tarroni**
 
