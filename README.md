@@ -14,15 +14,15 @@ STOMP learns endoscopy video representations using a shared momentum teacher, cr
 
 *STOMP combines global alignment across views with local semantic prediction. Green tokens are teacher features, purple tokens are student features, yellow tokens are decoder predictions, and orange tokens are global `[CLS]` representations. Red slashes indicate stopped gradients.*
 
-1. **Encode efficiently.** The momentum teacher sees complete global clips. The student drops **80% of global patch tokens** before encoding and also processes local crops.
+1. **Encode efficiently.** The momentum teacher sees complete global clips. The student drops **80% of global patch tokens** before encoding.
 2. **Align global meaning.** Match teacher and student `[CLS]` predictions across different views of the same clip, encouraging representations that are stable under changes in appearance and viewpoint.
-3. **Predict local semantics.** A lightweight decoder predicts features at masked locations. Teacher features and decoder predictions are compared through a shared set of **1,024 prototypes** and Sinkhorn-balanced assignments.
+3. **Predict local semantics.** A lightweight decoder predicts features at masked locations. Teacher features and decoder predictions are compared through a shared set of 1,024 prototypes and Sinkhorn-balanced assignments.
 
 Both objectives use the same teacher. The local objective supplies spatial supervision in feature space, while token dropping reduces encoder computation.
 
 ## Results reported in the paper
 
-Downstream scores are **mean ± standard deviation over three seeds**. These are paper results; the release checks do not rerun these experiments.
+Downstream scores.
 
 | Method | PolypDiag classification F1 (%) | CVC-12k segmentation Dice (%) | KUMC detection F1 (%) |
 | --- | ---: | ---: | ---: |
@@ -51,7 +51,7 @@ STOMP improves classification and segmentation in this comparison, with comparab
 
 This release contains STOMP pretraining, its token-dropping video transformer and decoder, and PolypDiag classification fine-tuning and linear probing. The source package is `ssl_space`; the method is registered as `stomp`.
 
-The paper also evaluates CVC-12k segmentation and KUMC detection. Those task-specific training pipelines, the original cross-validation splits, datasets, and trained STOMP checkpoints are **not included** in this release. The [Endo-FM repository](https://github.com/med-air/Endo-FM) describes the upstream datasets and downstream protocols; reproducing the full paper requires those additional components.
+The paper also evaluates CVC-12k segmentation and KUMC detection. Those task-specific training pipelines, the original cross-validation splits, datasets, and trained STOMP checkpoints are not included in this release. The [Endo-FM repository](https://github.com/med-air/Endo-FM) describes the upstream datasets and downstream protocols; reproducing the full paper requires those additional components.
 
 ## Installation
 
